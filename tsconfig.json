@@ -9,7 +9,9 @@
       "moduleResolution": "node",
       "noEmit": true,
       "strict": true,
-      "target": "esnext"
+      "target": "esnext",
+      "baseUrl": "./App"
     },
+    "include": ["src"],
     "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
   }
