@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import LoginScreen from 'Scenes/Login'
+import LoginScreen from 'App/Scenes/Login'
+
+import Text from 'App/Components/Text'
 
 interface INavigationRouterProps {}
 
@@ -9,11 +11,12 @@ const Stack = createStackNavigator()
 
 const NavigationRouter: React.FC<INavigationRouterProps> = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Text>text</Text>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="Login" component={LoginScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
   )
 }
 
