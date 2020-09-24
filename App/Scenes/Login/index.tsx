@@ -7,6 +7,7 @@ interface ILoginScreenProps {}
 
 const LoginScreen: React.FC<ILoginScreenProps> = () => {
   return (
+    // <View style={{ height: 200, backgroundColor: 'red' }} />
     <View style={{ flex: 1, backgroundColor: 'red' }}>
       <Text>Login</Text>
     </View>

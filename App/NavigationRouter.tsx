@@ -9,14 +9,15 @@ interface INavigationRouterProps {}
 
 const Stack = createStackNavigator()
 
+const Test = () => <Text>hehe</Text>
+
 const NavigationRouter: React.FC<INavigationRouterProps> = () => {
   return (
-    <Text>text</Text>
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Login" component={LoginScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Test} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
