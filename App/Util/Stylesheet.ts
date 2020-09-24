@@ -1,8 +1,8 @@
 import { Platform, StyleSheet } from 'react-native'
-import ApplicationStyles from 'App/Themes/ApplicationStyles'
+import ApplicationStyles, { TApplicationStyles } from 'App/Themes/ApplicationStyles'
 
 export default {
-  create(styles: { [key: string]: any }, includeApplicationStyles: boolean = true) {
+  create<T>(styles: T, includeApplicationStyles: boolean = true): T & TApplicationStyles {
     const output = {}
 
     if (includeApplicationStyles) {
@@ -10,11 +10,12 @@ export default {
     }
 
     for (const key of Object.keys(styles)) {
+      // @ts-ignore
       const { ios, android, ...common } = styles[key]
       const current = common
       Object.assign(current, Platform.select({ ios, android }))
     }
 
-    return StyleSheet.create(output)
+    return StyleSheet.create(output) as T & TApplicationStyles
   },
 }

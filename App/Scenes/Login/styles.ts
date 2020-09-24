@@ -1,3 +1,5 @@
 import StyleSheet from 'App/Util/Stylesheet'
 
-export default StyleSheet.create({})
+const styles = StyleSheet.create({})
+
+export default styles
