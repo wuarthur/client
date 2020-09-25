@@ -11,9 +11,13 @@ const AttendanceItem: React.FC<IAttendanceItemProps> = () => {
       <View style={styles.studentId}>
         <Text>Student ID</Text>
       </View>
-      <View style={styles.studentItemCell}>Student Name</View>
+      <View style={styles.studentItemCell}>
+        <Text>Student Name</Text>
+      </View>
       <View style={styles.studentItemCell}></View>
-      <View style={styles.studentItemCell}>Attendance</View>
+      <View style={styles.studentItemCell}>
+        <Text>Attendance</Text>
+      </View>
     </View>
   )
 }
