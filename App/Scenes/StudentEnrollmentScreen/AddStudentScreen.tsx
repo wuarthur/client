@@ -1,12 +1,15 @@
 import React from 'react'
 import Modal from 'react-native-modal'
 import StyleSheet from 'App/Util/Stylesheet'
-import { Button, View } from 'react-native'
+import { Button, Dimensions, View } from 'react-native'
 import Text from 'App/Components/Text'
 import { TextInput } from 'react-native'
+import { RNCamera } from 'react-native-camera'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { ParamList } from 'App/NavigationRouter'
 
 const styles = StyleSheet.create({
-  container: {
+  content: {
     alignItems: 'center',
     backgroundColor: 'white',
   },
@@ -32,20 +35,15 @@ const styles = StyleSheet.create({
   },
 })
 
-interface IAddStudentModalProps {
-  visible: boolean
-  onClose: () => void
+interface IAddStudentScreenProps {
+  navigation: StackNavigationProp<ParamList, 'Enrollment'>
 }
 
-const AddStudentModal: React.FC<IAddStudentModalProps> = ({ visible, onClose }) => {
+const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
+  const camera = React.useRef<RNCamera>(null)
   const [studentId, setStudentId] = React.useState('')
   const [name, setName] = React.useState('')
-  React.useEffect(() => {
-    if (visible) {
-      setStudentId('')
-      setName('')
-    }
-  }, [visible])
+  const [photo, setPhoto] = React.useState('')
   const onSubmit = React.useCallback(() => {}, [])
   const onChangeStudentId = React.useCallback((text: string) => {
     setStudentId(text)
@@ -53,15 +51,26 @@ const AddStudentModal: React.FC<IAddStudentModalProps> = ({ visible, onClose }) 
   const onChangeName = React.useCallback((text: string) => {
     setName(text)
   }, [])
-  const onEnterCamera = React.useCallback(() => {}, [])
+  const onSetPhoto = React.useCallback(async () => {
+    if (camera.current) {
+      const options = { quality: 0.5, base64: true }
+      const data = await camera.current.takePictureAsync(options)
+      setPhoto(data.uri)
+    }
+  }, [])
 
   return (
-    <Modal isVisible={visible}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <>
         <Text style={styles.title}>Enroll Student</Text>
         <View style={styles.contentMain}>
           <View style={styles.contentLeft}>
-            <Button onPress={onEnterCamera} title="Press to enter camera" />
+            <View style={{ height: 200, justifyContent: 'center' }}>
+              <Button
+                onPress={() => navigation.push('CapturePhoto')}
+                title="Press to enter camera"
+              />
+            </View>
           </View>
           <View style={styles.contentRight}>
             <TextInput
@@ -78,11 +87,12 @@ const AddStudentModal: React.FC<IAddStudentModalProps> = ({ visible, onClose }) 
             />
           </View>
         </View>
-        <Button onPress={onSubmit} title="Submit" />
-        <Button onPress={onClose} title="Close" />
-      </View>
-    </Modal>
+        <View style={{ marginBottom: 10 }}>
+          <Button onPress={onSubmit} title=" Submit " />
+        </View>
+      </>
+    </View>
   )
 }
 
-export default AddStudentModal
+export default AddStudentScreen
