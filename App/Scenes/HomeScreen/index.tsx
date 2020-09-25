@@ -36,7 +36,7 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
         <Button title="Enroll Students" onPress={enrollStudents}></Button>
       </View>
       <View style={styles.buttonRow}>
-        <Button title="Student Attendance" onPress={onStudentAttendance}></Button>
+        <Button title="Take Student Attendance" onPress={onStudentAttendance}></Button>
       </View>
       <View style={styles.buttonRow}>
         <Button title="Classes Information" onPress={classesInformation}></Button>
