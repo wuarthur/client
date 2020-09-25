@@ -14,6 +14,7 @@ export default {
       const { ios, android, ...common } = styles[key]
       const current = common
       Object.assign(current, Platform.select({ ios, android }))
+      output[key] = current
     }
 
     return StyleSheet.create(output) as T & TApplicationStyles
