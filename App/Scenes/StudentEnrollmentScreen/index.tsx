@@ -5,16 +5,16 @@ import styles from './styles'
 import StudentEnrollmentItem from './StudentEnrollmentItem'
 import Modal from 'react-native-modal'
 import AddStudentModal from './AddStudentModal'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { ParamList } from 'App/NavigationRouter'
 
-interface IStudentEnrollmentScreenProps {}
+interface IStudentEnrollmentScreenProps {
+  navigation: StackNavigationProp<ParamList, 'Enrollment'>
+}
 
-const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = () => {
-  const [showAddStudents, setShowAddStudents] = React.useState(false)
+const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = ({ navigation }) => {
   const onAddStudents = React.useCallback(() => {
-    setShowAddStudents(true)
-  }, [])
-  const onCloseAddStudents = React.useCallback(() => {
-    setShowAddStudents(false)
+    navigation.push('AddStudent')
   }, [])
 
   return (
@@ -36,7 +36,6 @@ const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = () => {
         <StudentEnrollmentItem />
         <StudentEnrollmentItem />
       </View>
-      <AddStudentModal visible={showAddStudents} onClose={onCloseAddStudents} />
     </View>
   )
 }
