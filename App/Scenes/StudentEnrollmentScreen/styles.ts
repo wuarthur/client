@@ -28,4 +28,12 @@ export default StyleSheet.create({
   wrapperPadding: {
     padding: 16,
   },
+  headerRow: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  title: {
+    flex: 1,
+  },
 })
