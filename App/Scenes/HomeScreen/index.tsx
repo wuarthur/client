@@ -14,7 +14,7 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
   const enrollStudents = React.useCallback(() => {
     navigation.push('Enrollment')
   }, [])
-  const takeAttendance = React.useCallback(() => {
+  const onStudentAttendance = React.useCallback(() => {
     navigation.push('TakeAttendance')
   }, [])
   const classesInformation = React.useCallback(() => {
@@ -24,7 +24,7 @@ const HomeScreen: React.FC<IHomeScreenProps> = ({ navigation }) => {
   return (
     <View style={[styles.container, styles.background]}>
       <Button title="Enroll Students" onPress={enrollStudents}></Button>
-      <Button title="Take Attendance" onPress={takeAttendance}></Button>
+      <Button title="Student Attendance" onPress={onStudentAttendance}></Button>
       <Button title="Classes Information" onPress={classesInformation}></Button>
     </View>
   )
