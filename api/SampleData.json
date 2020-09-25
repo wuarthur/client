@@ -1,0 +1,56 @@
+//Student Attendance List - Result sent from api:
+{
+    "classes": [
+        {
+            "name": "A",
+            "teacher": "Mod mark",
+            "students": [
+                {
+                    "id": 0,
+                    "name": "",
+                    "faceset_token": "",
+                    "attendance": 0
+                },
+                {
+                    "id": 1,
+                    "name": "",
+                    "faceset_token": "",
+                    "attendance": 0
+                }
+            ]
+        },
+        {
+            "name": "B",
+            "teacher": "Mod mark",
+            "students": [
+                {
+                    "id": 0,
+                    "name": "",
+                    "faceset_token": "",
+                    "attendance": 0
+                },
+                {
+                    "id": 1,
+                    "name": "",
+                    "faceset_token": "",
+                    "attendance": 0 //1 = attended, 0 = absent
+                }
+            ]
+        }
+    ]
+}
+//Student Enrollment - Result sent from api::
+{
+    "students": [
+        {
+            "id": 0,
+            "name": "",
+            "faceset_token": "",
+        },
+        {
+            "id": 1,
+            "name": "",
+            "faceset_token": "",
+        }
+    ]
+}
