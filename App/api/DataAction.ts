@@ -41,9 +41,12 @@ export const addStudent = async (id: number, name: string, course: string, imgPa
   })
 }
 
-export const getStudentAttenceInfo = () => {}
+export const getStudentAttendceInfo = () => {}
 
-export const getStudentEnrollmentInfo = () => {}
+export const getStudentEnrollmentInfo = async (): Promise<Array<Student>> => {
+  const students = await getStudents()
+  return students
+}
 
 export const getStudents = async (): Promise<Array<Student>> => {
   try {
