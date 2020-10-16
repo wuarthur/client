@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
-import {Student, FetchedStudent, FetchedResult, StudentEnrollmentInfo } from './Data'
+import {Student, FetchedStudent, FetchedResult, StudentEnrollmentInfo, ClassName } from './Data'
 import * as Utilities from './Utilities'
 
 const BASE_URL = 'http://127.0.0.1:1911'
@@ -28,16 +28,26 @@ const performApiRequest = async <T>(
   }
 }
 
-export const addStudent = async (id: number, name: string, course: string, imgPath: string) => {
-  const targetBinaryData = await Utilities.convertImgToBinary(imgPath)
-  const body: FetchedStudent = {
-    courses: [course],
-    faceset_token: targetBinaryData,
-    name: name,
-    'student-id': id.toString(),
-  }
+export const addStudent = async (name: string, courses: Array<ClassName>, imgPath: string) => {
+  //const targetBinaryData = await Utilities.convertImgToBinary(imgPath)
+  // const body: FetchedStudent = {
+  //   courses: courses,
+  //   //faceset_token: targetBinaryData,
+  //   faceset_token: "123",
+  //   name: name,
+  //   'student-id': new Date().getTime().toString(),
+  // }
+
+  var body: FormData = new FormData()
+  body.append("courses", JSON.stringify(courses))
+  body.append("faceset_token", "123")
+  body.append("name", name)
+  body.append("student-id", new Date().getTime().toString())
+
+  console.log("body:")
+  console.log(body)
   return performApiRequest('POST', '/student', body, {
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'multipart/form-data' },
   })
 }
 
