@@ -1,35 +1,10 @@
-import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
+import { performApiRequest} from './Utilities'
+import { AxiosResponse } from 'axios'
 import {Student, FetchedStudent, FetchedResult, StudentEnrollmentInfo, ClassName } from './Data'
 import * as Utilities from './Utilities'
 
-const BASE_URL = 'http://127.0.0.1:1911'
-
-const axiosInstance = axios.create({
-  baseURL: BASE_URL,
-})
-
-const performApiRequest = async <T>(
-  method: Method,
-  route: string,
-  data?: any,
-  config?: AxiosRequestConfig,
-): Promise<AxiosResponse<T>> => {
-  try {
-
-    return await axiosInstance({
-      method: method,
-      url: route,
-      ...(method !== "GET" && {data: data}),
-      ...config
-    })
-  } catch (err) {
-    console.log('API Error:', err)
-    throw err
-  }
-}
-
-export const addStudent = async (name: string, courses: Array<ClassName>, imgPath: string) => {
-  //const targetBinaryData = await Utilities.convertImgToBinary(imgPath)
+export const addStudent = async (name: string, courses: Array<ClassName>, imgBase64: string) => {
+  //const imgBase64 = await Utilities.convertImgToBinary(imgPath)
   // const body: FetchedStudent = {
   //   courses: courses,
   //   //faceset_token: targetBinaryData,
@@ -40,7 +15,7 @@ export const addStudent = async (name: string, courses: Array<ClassName>, imgPat
 
   var body: FormData = new FormData()
   body.append("courses", JSON.stringify(courses))
-  body.append("faceset_token", "123")
+  body.append("faceset_token", imgBase64)
   body.append("name", name)
   body.append("student-id", new Date().getTime().toString())
 
@@ -67,8 +42,8 @@ export const getStudents = async (): Promise<Array<Student>> => {
       { headers: { 'Content-Type': 'application/json' } },
     )
 
-    console.log("student response");
-    console.log(response.data[0].results);
+    //console.log("student response");
+    //console.log(response.data[0].results);
     var students: Array<Student> = [];
 
     if (!!response.data && response.data.length > 0 && !!response.data[0].results) {
@@ -79,7 +54,7 @@ export const getStudents = async (): Promise<Array<Student>> => {
                 faceset_token: fetchedStudent.faceset_token
             }
         });
-        console.log(students);
+        //console.log(students);
     }
 
     return students;

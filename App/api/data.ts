@@ -2,6 +2,14 @@ export interface FetchedResult {
   results?: Array<FetchedStudent>
 }
 
+export interface FaceIdentificationConfidence {
+  confidence: number
+}
+
+export interface FaceIdentificationData {
+  data: FaceIdentificationConfidence
+}
+
 export interface FetchedStudent {
   courses: Array<string>
   faceset_token: string

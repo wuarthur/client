@@ -9,6 +9,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { ParamList } from 'App/NavigationRouter'
 import * as DataAction from 'App/api/DataAction'
 import { ClassName } from '../../api/data'
+import * as FaceIdentification from '../../api/FaceIdentification'
 
 interface IStudentEnrollmentScreenProps {
   navigation: StackNavigationProp<ParamList, 'Enrollment'>
@@ -17,10 +18,10 @@ interface IStudentEnrollmentScreenProps {
 const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = ({ navigation }) => {
   const onAddStudents = React.useCallback(() => {
     navigation.push('AddStudent')
-    //for testing purposes, remove later:
-    //DataAction.getStudents()
-    console.log("called")
-    DataAction.addStudent("Mark Obesity", [ClassName.CHINESE, ClassName.ENGLISH], "test")
+    // How to call API functions:
+    // DataAction.getStudents()
+    // DataAction.addStudent("Mark Obesity", [ClassName.CHINESE, ClassName.ENGLISH], "base 64 face token")
+    // FaceIdentification.getMostIdeniticalStudent("base 64 face token");
   }, [])
 
   return (
