@@ -35,12 +35,14 @@ export const getStudents = (): Promise<Array<Data.Student>> => {
         })
             .then((response:AxiosResponse) => {
                 //handle success
+                console.log("student response");
                 console.log(response);
                 var students: Array<Data.Student> = response.data[0].results;
                 resolve(students);
             })
             .catch((error) => {
                 //handle error
+                console.log("student error");
                 console.log(error);
                 reject(error)
             });

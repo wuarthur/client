@@ -8,6 +8,8 @@ import AddStudentModal from './AddStudentModal'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ParamList } from 'App/NavigationRouter'
 
+import * as DataAction from '../../../api/DataAction'
+
 interface IStudentEnrollmentScreenProps {
   navigation: StackNavigationProp<ParamList, 'Enrollment'>
 }
@@ -15,6 +17,8 @@ interface IStudentEnrollmentScreenProps {
 const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = ({ navigation }) => {
   const onAddStudents = React.useCallback(() => {
     navigation.push('AddStudent')
+    //for testing purposes, remove later:
+    DataAction.getStudents()
   }, [])
 
   return (
