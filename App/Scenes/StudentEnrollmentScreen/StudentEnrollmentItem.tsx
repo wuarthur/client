@@ -3,23 +3,26 @@ import Text from 'App/Components/Text'
 import styles from './styles'
 import { Image, View } from 'react-native'
 
-interface IStudentEnrollmentItemProps {}
+interface IStudentEnrollmentItemProps { 
+  index: number,
+  name: string,
+  uri: string
+}
 
-const StudentEnrollmentItem: React.FC<IStudentEnrollmentItemProps> = () => {
+const StudentEnrollmentItem: React.FC<IStudentEnrollmentItemProps> = ({index, name, uri}) => {
   return (
     <View style={styles.studentEnrollmentItem}>
       <View style={styles.enrollmentItemLeft}>
-        <Text>12345</Text>
+        <Text style={styles.text}>{index}</Text>
       </View>
       <View style={styles.enrollmentItemCenter}>
-        <Text>Mark Fatfuck</Text>
+        <Text style={styles.text}>{name}</Text>
       </View>
       <View style={styles.enrollmentItemRight}>
         <Image
           style={{ width: '100%', height: 200 }}
           source={{
-            uri:
-              'https://static.wikia.nocookie.net/rsplayers/images/0/00/Mark_Ogilvie.png/revision/latest?cb=20121017173842',
+            uri: uri
           }}
         />
       </View>

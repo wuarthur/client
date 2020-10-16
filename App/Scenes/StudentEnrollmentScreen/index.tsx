@@ -21,20 +21,21 @@ const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = ({ navi
     <View style={styles.container}>
       <View style={styles.headerRow}>
         <Text style={styles.title}>Student Enrollment</Text>
-        <Button title="Add Students" onPress={onAddStudents} />
+        <Button style={styles.text} title="Add Students" onPress={onAddStudents} />
       </View>
       <View style={[styles.container, styles.wrapperPadding]}>
         <View style={styles.studentEnrollmentItem}>
           <View style={styles.enrollmentItemLeft}>
-            <Text>ID</Text>
+            <Text style={styles.text}>ID</Text>
           </View>
           <View style={styles.enrollmentItemCenter}>
-            <Text>Name</Text>
+            <Text style={styles.text}>Name</Text>
           </View>
-          <View style={styles.enrollmentItemRight}></View>
+          <View style={styles.text}></View>
         </View>
-        <StudentEnrollmentItem />
-        <StudentEnrollmentItem />
+        <StudentEnrollmentItem name={"Mark Fatfuck"} index={123234} uri={"https://static.wikia.nocookie.net/rsplayers/images/0/00/Mark_Ogilvie.png/revision/latest?cb=20121017173842"}/>
+        <StudentEnrollmentItem name={"Mark Donalds"} index={435454} uri={"https://i.redd.it/sco9pobbg9k11.jpg"} />
+        <StudentEnrollmentItem name={"Spin Merchant"} index={123} uri={"https://pbs.twimg.com/media/Bnokn56IIAAWaBN?format=png&name=360x360"} />
       </View>
     </View>
   )

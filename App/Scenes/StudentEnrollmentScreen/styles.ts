@@ -4,26 +4,30 @@ export default StyleSheet.create({
   studentEnrollmentItem: {
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: 'black',
+    borderBottomColor: 'white',
     borderTopWidth: 1,
-    borderTopColor: 'black',
+    borderTopColor: 'white',
+    color: 'white'
   },
   enrollmentItemLeft: {
     flex: 3,
     borderLeftWidth: 1,
-    borderLeftColor: 'black',
+    borderLeftColor: 'white',
+    color: 'white'
   },
   enrollmentItemCenter: {
     flex: 5,
     borderLeftWidth: 1,
-    borderLeftColor: 'black',
+    borderLeftColor: 'white',
+    color: 'white'
   },
   enrollmentItemRight: {
     flex: 4,
     borderLeftWidth: 1,
-    borderLeftColor: 'black',
+    borderLeftColor: 'white',
     borderRightWidth: 1,
-    borderRightColor: 'black',
+    borderRightColor: 'white',
+    color: 'white'
   },
   wrapperPadding: {
     padding: 16,
@@ -35,5 +39,12 @@ export default StyleSheet.create({
   },
   title: {
     flex: 1,
+    color: 'white'
   },
+  container: {
+    backgroundColor:'#6666ff',
+  },
+  text: {
+    color: 'white'
+  }
 })
