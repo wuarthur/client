@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
-import {Student, FetchedStudent, FetchedResult} from './Data'
+import {Student, FetchedStudent, FetchedResult, StudentEnrollmentInfo } from './Data'
 import * as Utilities from './Utilities'
 
 const BASE_URL = 'http://127.0.0.1:1911'
@@ -43,9 +43,9 @@ export const addStudent = async (id: number, name: string, course: string, imgPa
 
 export const getStudentAttendceInfo = () => {}
 
-export const getStudentEnrollmentInfo = async (): Promise<Array<Student>> => {
-  const students = await getStudents()
-  return students
+export const getStudentEnrollmentInfo = async (): Promise<StudentEnrollmentInfo> => {
+  const students: Array<Student> = await getStudents()
+  return {students: students}
 }
 
 export const getStudents = async (): Promise<Array<Student>> => {
