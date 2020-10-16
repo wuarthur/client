@@ -1,6 +1,31 @@
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios'
 import * as Data from './Data'
 import * as Utilities from './Utilities'
+
+const BASE_URL = 'http://127.0.0.1:1911'
+
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+})
+
+const performApiRequest = async <T>(
+  method: Method,
+  route: string,
+  data?: any,
+  config?: AxiosRequestConfig,
+): Promise<AxiosResponse<T>> => {
+  try {
+    return await axiosInstance({
+      method,
+      url: route,
+      data,
+      ...config,
+    })
+  } catch (err) {
+    console.log('API Error:', err)
+    throw err
+  }
+}
 
 export const addStudent = async (id: number, name: string, course: string, imgPath: string) => {
   const targetBinaryData = await Utilities.convertImgToBinary(imgPath)
@@ -10,10 +35,7 @@ export const addStudent = async (id: number, name: string, course: string, imgPa
     name: name,
     'student-id': id,
   }
-  await axios({
-    method: 'POST',
-    url: 'http://127.0.0.1:1911/student',
-    data: body,
+  return performApiRequest('POST', '/student', body, {
     headers: { 'Content-Type': 'application/json' },
   })
 }
@@ -24,16 +46,14 @@ export const getStudentEnrollmentInfo = () => {}
 
 export const getStudents = async (): Promise<Array<Data.Student>> => {
   try {
-    const response = await axios({
-      method: 'GET',
-      url: 'http://127.0.0.1:1911/student',
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    console.log("student response");
-    console.log(response);
-    var students: Array<Data.Student> = response.data[0].results;
-    return students
+    const response = await performApiRequest(
+      'GET',
+      '/student',
+      {},
+      { headers: { 'Content-Type': 'application/json' } },
+    )
+    console.log('Students response:', response)
+    return response.data[0].results
   } catch (error) {
     console.log(error)
     throw error
