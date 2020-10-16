@@ -7,8 +7,7 @@ import Modal from 'react-native-modal'
 import AddStudentModal from './AddStudentModal'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ParamList } from 'App/NavigationRouter'
-
-import * as DataAction from '../../../api/DataAction'
+import * as DataAction from 'App/api/DataAction'
 
 interface IStudentEnrollmentScreenProps {
   navigation: StackNavigationProp<ParamList, 'Enrollment'>
@@ -37,9 +36,23 @@ const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = ({ navi
           </View>
           <View style={styles.text}></View>
         </View>
-        <StudentEnrollmentItem name={"Mark Fatfuck"} index={123234} uri={"https://static.wikia.nocookie.net/rsplayers/images/0/00/Mark_Ogilvie.png/revision/latest?cb=20121017173842"}/>
-        <StudentEnrollmentItem name={"Mark Donalds"} index={435454} uri={"https://i.redd.it/sco9pobbg9k11.jpg"} />
-        <StudentEnrollmentItem name={"Spin Merchant"} index={123} uri={"https://pbs.twimg.com/media/Bnokn56IIAAWaBN?format=png&name=360x360"} />
+        <StudentEnrollmentItem
+          name={'Mark Fatfuck'}
+          index={123234}
+          uri={
+            'https://static.wikia.nocookie.net/rsplayers/images/0/00/Mark_Ogilvie.png/revision/latest?cb=20121017173842'
+          }
+        />
+        <StudentEnrollmentItem
+          name={'Mark Donalds'}
+          index={435454}
+          uri={'https://i.redd.it/sco9pobbg9k11.jpg'}
+        />
+        <StudentEnrollmentItem
+          name={'Spin Merchant'}
+          index={123}
+          uri={'https://pbs.twimg.com/media/Bnokn56IIAAWaBN?format=png&name=360x360'}
+        />
       </View>
     </View>
   )
