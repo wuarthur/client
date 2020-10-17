@@ -48,7 +48,7 @@ const StudentAttendanceScreen: React.FC<IStudentAttendanceScreenProps> = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Student Attendance List</Text>
+      <Text style={{ marginHorizontal: 21, marginTop: 20 }}>Student Attendance List</Text>
       <View style={[styles.container, styles.containerPadding]}>
         {items.map((item, index) => (
           <View key={index}>
