@@ -1,10 +1,15 @@
 import { performApiRequest } from './Utilities'
 import { AxiosResponse } from 'axios'
 import {
-  Student, FetchedStudent, FetchedResult,
-  StudentEnrollmentInfo, ClassId, ClassName, Class,
+  Class,
   Teacher,
-  StudentAttendanceListResult
+  StudentAttendanceListResult,
+  Student,
+  FetchedStudent,
+  FetchedResult,
+  StudentEnrollmentInfo,
+  ClassId,
+  ClassName,
 } from './data'
 import * as Utilities from './Utilities'
 
@@ -17,14 +22,18 @@ export const addStudent = async (name: string, courses: Array<string>, imgBase64
   //   name: name,
   //   'student-id': new Date().getTime().toString(),
   // }
-
+  console.log('stuff:', {
+    courses,
+    faceset_token: imgBase64,
+    name,
+    'student-id': new Date().getTime().toString(),
+  })
   var body: FormData = new FormData()
-  body.append("courses", JSON.stringify(courses))
-  body.append("faceset_token", imgBase64)
-  body.append("name", name)
-  body.append("student-id", new Date().getTime().toString())
-
-  console.log("body:")
+  body.append('courses', JSON.stringify(courses))
+  body.append('faceset_token', imgBase64)
+  body.append('name', name)
+  body.append('student-id', new Date().getTime().toString())
+  console.log('body:')
   console.log(body)
   return performApiRequest('POST', '/student', body, {
     headers: { 'Content-Type': 'multipart/form-data' },
@@ -56,7 +65,7 @@ export const getStudents = async (): Promise<Array<Student>> => {
 
     //console.log("student response");
     //console.log(response.data[0].results);
-    var students: Array<Student> = [];
+    var students: Array<Student> = []
 
     if (!!response.data && response.data.length > 0 && !!response.data[0].results) {
       students = response.data[0].results.map((fetchedStudent: FetchedStudent) => {
@@ -81,11 +90,11 @@ export const getStudents = async (): Promise<Array<Student>> => {
 const initializeClasses = (): void => {
   initialClasses.forEach(initialClass => {
     var body: FormData = new FormData()
-    body.append("class-id", initialClass.id)
-    body.append("course-name", initialClass.name)
-    body.append("year-offered", "0")
-    body.append("students", JSON.stringify([]))
-    body.append("number-of-lectures", 0)
+    body.append('class-id', initialClass.id)
+    body.append('course-name', initialClass.name)
+    body.append('year-offered', '0')
+    body.append('students', JSON.stringify([]))
+    body.append('number-of-lectures', 0)
 
     return performApiRequest('POST', '/class', body, {
       headers: { 'Content-Type': 'multipart/form-data' },
@@ -94,11 +103,11 @@ const initializeClasses = (): void => {
 }
 
 const initializeTeachers = (): void => {
-  initialTeachers.forEach(initialTeacher => {
+  initialTeachers.forEach((initialTeacher) => {
     var body: FormData = new FormData()
-    body.append("teacher-id", initialTeacher.id)
-    body.append("courses", initialTeacher.courses)
-    body.append("name", initialTeacher.name)
+    body.append('teacher-id', initialTeacher.id)
+    body.append('courses', initialTeacher.courses)
+    body.append('name', initialTeacher.name)
 
     return performApiRequest('POST', '/teacher', body, {
       headers: { 'Content-Type': 'multipart/form-data' },
@@ -191,7 +200,6 @@ const initialTeachers = [
   { id: 3, name: "Mark Green Partyhat", courses: [ClassId.ECONOMICS] },
 ]
 
-
 export const initalizeDatabase = async (): Promise<void> => {
   const classesLength: Array<Class> = await getClasses()
   const teachersLength: Array<Teacher> = await getTeachers()
@@ -200,6 +208,3 @@ export const initalizeDatabase = async (): Promise<void> => {
     initializeTeachers()
   }
 }
-
-
-

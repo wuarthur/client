@@ -8,7 +8,7 @@ import StyleSheet from 'App/Util/Stylesheet'
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: 'cornflowerblue',
+    backgroundColor: 'white',
   },
   buttonRow: {
     marginBottom: 15,
