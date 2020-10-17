@@ -46,6 +46,13 @@ export enum ClassName {
   ECONOMICS = 'Economics',
 }
 
+export enum ClassId {
+  ENGLISH = 0,
+  CHINESE = 1,
+  FARMING = 2,
+  ECONOMICS = 3,
+}
+
 export enum Attendance {
   ABSENT = 0,
   ATTENDED,
