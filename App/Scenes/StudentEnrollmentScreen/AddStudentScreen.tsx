@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from 'react-native-modal'
 import StyleSheet from 'App/Util/Stylesheet'
-import { Button, Dimensions, View } from 'react-native'
+import { Button, Dimensions, View, Image } from 'react-native'
 import Text from 'App/Components/Text'
 import { TextInput } from 'react-native'
 import { RNCamera } from 'react-native-camera'
@@ -58,6 +58,10 @@ const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
       setPhoto(data.uri)
     }
   }, [])
+  const onPhotoSelected = React.useCallback((base64: string) => {
+    console.log('base 64 image:', base64)
+    setPhoto(base64)
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -66,8 +70,18 @@ const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
         <View style={styles.contentMain}>
           <View style={styles.contentLeft}>
             <View style={{ height: 200, justifyContent: 'center' }}>
+              {!!photo && (
+                <Image
+                  style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}
+                  source={{ uri: `data:image/jpeg;base64,${photo}` }}
+                />
+              )}
               <Button
-                onPress={() => navigation.push('CapturePhoto')}
+                onPress={() =>
+                  navigation.push('CapturePhoto', {
+                    onPhotoSelected,
+                  })
+                }
                 title="Press to enter camera"
               />
             </View>
