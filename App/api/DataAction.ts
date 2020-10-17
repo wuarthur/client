@@ -19,7 +19,12 @@ export const addStudent = async (name: string, courses: Array<ClassId>, imgBase6
   //   name: name,
   //   'student-id': new Date().getTime().toString(),
   // }
-
+  console.log('stuff:', {
+    courses,
+    faceset_token: imgBase64,
+    name,
+    'student-id': new Date().getTime().toString(),
+  })
   var body: FormData = new FormData()
   body.append('courses', JSON.stringify(courses))
   body.append('faceset_token', imgBase64)

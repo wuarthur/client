@@ -38,7 +38,9 @@ const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = ({ navi
           <View style={styles.enrollmentItemCenter}>
             <Text style={styles.text}>Name</Text>
           </View>
-          <View style={styles.text}></View>
+          <View style={styles.enrollmentItemRight}>
+            <Text style={styles.text}>Photo</Text>
+          </View>
         </View>
         <StudentEnrollmentItem
           name={'Mark Fatfuck'}

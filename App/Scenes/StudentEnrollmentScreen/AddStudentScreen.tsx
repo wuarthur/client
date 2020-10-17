@@ -58,7 +58,7 @@ const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
     } catch (err) {
       console.log('Add student error:', err, err.response)
     }
-  }, [])
+  }, [name, photo, selectedClasses])
   const onChangeName = React.useCallback((text: string) => {
     setName(text)
   }, [])
