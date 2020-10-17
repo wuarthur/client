@@ -14,14 +14,14 @@ const StudentAttendanceScreen: React.FC<IStudentAttendanceScreenProps> = () => {
       students: [
         {
           id: 0,
-          name: '',
-          faceset_token: '',
+          name: 'Mod MMG',
+          faceset_token: 'kjhebkhdsafbe1k2hb98',
           attendance: 0,
         },
         {
           id: 1,
-          name: '',
-          faceset_token: '',
+          name: 'jas0n',
+          faceset_token: 'kafjndksjfnnldfs_d',
           attendance: 0,
         },
       ],
@@ -32,14 +32,14 @@ const StudentAttendanceScreen: React.FC<IStudentAttendanceScreenProps> = () => {
       students: [
         {
           id: 0,
-          name: 'dickhead',
-          faceset_token: '',
+          name: 'tuppyole',
+          faceset_token: 'asdmfnb_fljsandfljn',
           attendance: 0,
         },
         {
           id: 1,
-          name: '',
-          faceset_token: '',
+          name: 'paullam328',
+          faceset_token: '1jsi1dna_2k3udsafj',
           attendance: 0, //1 = attended, 0 = absent
         },
       ],
@@ -53,8 +53,10 @@ const StudentAttendanceScreen: React.FC<IStudentAttendanceScreenProps> = () => {
         {items.map((item, index) => (
           <View key={index}>
             <View>
-              <Text>Class: {item.name}</Text>
-              <Text>Taught by {item.teacher}</Text>
+              <View style={{ marginVertical: 20 }}>
+                <Text>Class: {item.name}</Text>
+                <Text>Taught by {item.teacher}</Text>
+              </View>
               <View style={styles.attendanceItem}>
                 <View style={styles.studentId}>
                   <Text>Student ID</Text>

@@ -11,10 +11,12 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderLeftWidth: 1,
     borderRightWidth: 1,
+    padding: 5,
   },
   studentItemCell: {
     flex: 3,
     borderColor: 'black',
     borderRightWidth: 1,
+    padding: 5,
   },
 })
