@@ -23,7 +23,8 @@ const TakeAttendanceScreen: React.FC<ICapturePhotoScreenProps> = ({ navigation, 
       const rawURI = data.uri.substring(7)
       const base64 = await RNFS.readFile(rawURI, 'base64')
       navigation.goBack()
-      route.params.onPhotoSelected && route.params.onPhotoSelected(base64)
+      route.params.onPhotoSelected &&
+        route.params.onPhotoSelected(`data:image/jpeg;base64,${base64}`)
     }
   }, [])
 

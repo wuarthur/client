@@ -7,6 +7,8 @@ import { TextInput } from 'react-native'
 import { RNCamera } from 'react-native-camera'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ParamList } from 'App/NavigationRouter'
+import * as api from 'App/api/DataAction'
+import { ClassId, ClassName } from 'App/api/data'
 
 const styles = StyleSheet.create({
   content: {
@@ -41,12 +43,21 @@ interface IAddStudentScreenProps {
 
 const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
   const camera = React.useRef<RNCamera>(null)
-  const [studentId, setStudentId] = React.useState('')
+  const [selectedClasses, setSelectedClasses] = React.useState<Record<string, ClassName>>({})
   const [name, setName] = React.useState('')
   const [photo, setPhoto] = React.useState('')
-  const onSubmit = React.useCallback(() => {}, [])
-  const onChangeStudentId = React.useCallback((text: string) => {
-    setStudentId(text)
+  const onSubmit = React.useCallback(async () => {
+    try {
+      const response = await api.addStudent(
+        name,
+        // @ts-ignore
+        Object.keys(selectedClasses).filter((selectedClass) => selectedClass) as ClassId[],
+        photo,
+      )
+      console.log('Add student response:', response)
+    } catch (err) {
+      console.log('Add student error:', err, err.response)
+    }
   }, [])
   const onChangeName = React.useCallback((text: string) => {
     setName(text)
@@ -59,7 +70,6 @@ const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
     }
   }, [])
   const onPhotoSelected = React.useCallback((base64: string) => {
-    console.log('base 64 image:', base64)
     setPhoto(base64)
   }, [])
 
@@ -73,7 +83,7 @@ const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
               {!!photo && (
                 <Image
                   style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }}
-                  source={{ uri: `data:image/jpeg;base64,${photo}` }}
+                  source={{ uri: photo }}
                 />
               )}
               <Button
@@ -88,17 +98,27 @@ const AddStudentScreen: React.FC<IAddStudentScreenProps> = ({ navigation }) => {
           </View>
           <View style={styles.contentRight}>
             <TextInput
-              value={studentId}
-              onChangeText={onChangeStudentId}
-              style={styles.input}
-              placeholder="Student ID"
-            />
-            <TextInput
               value={name}
               onChangeText={onChangeName}
               style={styles.input}
               placeholder="Name"
             />
+            {Object.keys(ClassName).map((classId) => {
+              const selected = !!selectedClasses[ClassName[classId]]
+              return (
+                <View style={{ opacity: selected ? 1 : 0.5, marginBottom: 10 }} key={classId}>
+                  <Button
+                    title={ClassName[classId]}
+                    onPress={() =>
+                      setSelectedClasses((prev) => ({
+                        ...prev,
+                        [ClassName[classId]]: !selected,
+                      }))
+                    }
+                  />
+                </View>
+              )
+            })}
           </View>
         </View>
         <View style={{ marginBottom: 10 }}>
