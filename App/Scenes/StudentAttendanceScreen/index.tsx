@@ -7,6 +7,45 @@ import AttendanceItem from './AttendanceItem'
 interface IStudentAttendanceScreenProps {}
 
 const StudentAttendanceScreen: React.FC<IStudentAttendanceScreenProps> = () => {
+  const items = [
+    {
+      name: 'A',
+      teacher: 'Mod mark',
+      students: [
+        {
+          id: 0,
+          name: '',
+          faceset_token: '',
+          attendance: 0,
+        },
+        {
+          id: 1,
+          name: '',
+          faceset_token: '',
+          attendance: 0,
+        },
+      ],
+    },
+    {
+      name: 'B',
+      teacher: 'Mod mark',
+      students: [
+        {
+          id: 0,
+          name: '',
+          faceset_token: '',
+          attendance: 0,
+        },
+        {
+          id: 1,
+          name: '',
+          faceset_token: '',
+          attendance: 0, //1 = attended, 0 = absent
+        },
+      ],
+    },
+  ]
+
   return (
     <View style={styles.container}>
       <Text>Student Attendance List</Text>

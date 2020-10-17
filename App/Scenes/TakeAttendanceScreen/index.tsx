@@ -3,6 +3,8 @@ import Text from 'App/Components/Text'
 import { RNCamera, FaceDetector } from 'react-native-camera'
 import StyleSheet from 'App/Util/Stylesheet'
 import { View, TouchableOpacity } from 'react-native'
+import { getMostIdeniticalStudent } from 'App/api/FaceIdentification'
+import toBase64 from 'App/Util/base64'
 
 interface ITakeAttendanceScreenProps {}
 
@@ -14,7 +16,8 @@ const TakeAttendanceScreen: React.FC<ITakeAttendanceScreenProps> = () => {
     if (camera.current) {
       const options = { quality: 0.5, base64: true }
       const data = await camera.current.takePictureAsync(options)
-      console.log(data.uri)
+      const response = await getMostIdeniticalStudent(await toBase64(data.uri))
+      console.log('get most identical student response:', response)
     }
   }, [])
 
