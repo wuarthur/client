@@ -3,20 +3,24 @@ import styles from './styles'
 import { View } from 'react-native'
 import Text from 'App/Components/Text'
 
-interface IAttendanceItemProps {}
+interface IAttendanceItemProps {
+  student: any
+}
 
-const AttendanceItem: React.FC<IAttendanceItemProps> = () => {
+const AttendanceItem: React.FC<IAttendanceItemProps> = ({ student }) => {
   return (
     <View style={styles.attendanceItem}>
       <View style={styles.studentId}>
-        <Text>Student ID</Text>
+        <Text>{student.id}</Text>
       </View>
       <View style={styles.studentItemCell}>
-        <Text>Student Name</Text>
+        <Text>{student.name}</Text>
       </View>
-      <View style={styles.studentItemCell}></View>
       <View style={styles.studentItemCell}>
-        <Text>Attendance</Text>
+        <Text>{student.faceset_token}</Text>
+      </View>
+      <View style={styles.studentItemCell}>
+        <Text>{student.attendance ? 'Attending' : 'Absent'}</Text>
       </View>
     </View>
   )

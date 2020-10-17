@@ -32,7 +32,7 @@ const StudentAttendanceScreen: React.FC<IStudentAttendanceScreenProps> = () => {
       students: [
         {
           id: 0,
-          name: '',
+          name: 'dickhead',
           faceset_token: '',
           attendance: 0,
         },
@@ -50,20 +50,31 @@ const StudentAttendanceScreen: React.FC<IStudentAttendanceScreenProps> = () => {
     <View style={styles.container}>
       <Text>Student Attendance List</Text>
       <View style={[styles.container, styles.containerPadding]}>
-        <View style={styles.attendanceItem}>
-          <View style={styles.studentId}>
-            <Text>Student ID</Text>
+        {items.map((item, index) => (
+          <View key={index}>
+            <View>
+              <Text>Class: {item.name}</Text>
+              <Text>Taught by {item.teacher}</Text>
+              <View style={styles.attendanceItem}>
+                <View style={styles.studentId}>
+                  <Text>Student ID</Text>
+                </View>
+                <View style={styles.studentItemCell}>
+                  <Text>Student Name</Text>
+                </View>
+                <View style={styles.studentItemCell}>
+                  <Text>Faceset Token</Text>
+                </View>
+                <View style={styles.studentItemCell}>
+                  <Text>Attendance</Text>
+                </View>
+              </View>
+              {item.students.map((student, index) => (
+                <AttendanceItem student={student} key={index} />
+              ))}
+            </View>
           </View>
-          <View style={styles.studentItemCell}>
-            <Text>Student Name</Text>
-          </View>
-          <View style={styles.studentItemCell}></View>
-          <View style={styles.studentItemCell}>
-            <Text>Attendance</Text>
-          </View>
-        </View>
-        <AttendanceItem />
-        <AttendanceItem />
+        ))}
       </View>
     </View>
   )
