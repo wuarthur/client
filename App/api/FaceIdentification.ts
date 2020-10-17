@@ -67,7 +67,7 @@ export const getMostIdeniticalStudent = async (imgBase64: string): Promise<Data.
     //compare with all the images to get the most similar one:
     var maxSimiliarityInfo: SimilarityInfo | null = null;
     for (var i = 0; i < students.length; i++) {
-        var imgSimilarityPercentage = await delayed_getImageSimilarityPercentage(students[i].faceset_token, imgBase64);
+        var imgSimilarityPercentage = await delayed_getImageSimilarityPercentage(students[i].faceset_token!, imgBase64);
         console.log(`image similarity percentage: ${imgSimilarityPercentage}`)
         if (imgSimilarityPercentage != -1 
             && (maxSimiliarityInfo === null 

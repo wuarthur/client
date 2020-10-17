@@ -8,7 +8,7 @@ import AddStudentModal from './AddStudentModal'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ParamList } from 'App/NavigationRouter'
 import * as DataAction from 'App/api/DataAction'
-import { ClassName } from '../../api/data'
+import { ClassId } from '../../api/data'
 import * as FaceIdentification from '../../api/FaceIdentification'
 
 interface IStudentEnrollmentScreenProps {
@@ -20,7 +20,8 @@ const StudentEnrollmentScreen: React.FC<IStudentEnrollmentScreenProps> = ({ navi
     navigation.push('AddStudent')
     // How to call API functions:
     // DataAction.getStudents()
-    // DataAction.addStudent("Mark Obesity", [ClassName.CHINESE, ClassName.ENGLISH], "base 64 face token")
+    DataAction.getStudentAttendceInfo()
+     //DataAction.addStudent("Mark Obesity", [ClassId.CHINESE.toString(), ClassId.ENGLISH.toString()], "base 64 face token")
     // FaceIdentification.getMostIdeniticalStudent("base 64 face token");
   }, [])
 

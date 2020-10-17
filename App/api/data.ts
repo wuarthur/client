@@ -23,14 +23,25 @@ export interface StudentEnrollmentInfo {
 
 export interface Student {
     id: number,
-    name: string,
-    faceset_token: string,
+    name?: string,
+    faceset_token?: string,
     attendance?: number
 }
 
+export interface FetchedTeacher {
+
+}
+
+export interface Teacher {
+  id: number,
+  name: string,
+  courses: Array<number>
+}
+
 export interface Class {
+    id: number,
     name: string,
-    teacher: string,
+    teacher?: string,
     students: Array<Student>
 }
 
